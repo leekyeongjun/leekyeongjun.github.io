@@ -6,7 +6,7 @@ window.onload = function() {
 };
 
 function fetchTarotData() {
-    fetch('http://localhost/dashboard/Tataro/Json/TarotInfo.json')
+    fetch('Json/TarotInfo.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
