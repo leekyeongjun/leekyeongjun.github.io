@@ -4,34 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tarot Data Viewer</title>
-<style>
-    /* 여기에 CSS 스타일을 추가하세요 */
-    .tarot-data {
-        white-space: pre-wrap; /* JSON 데이터를 보기 좋게 출력하기 위해 */
-    }
-</style>
-</head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="https://leekyeongjun.github.io/Tataro/CSS/style.css">
+    <!--<link rel="stylesheet" type="text/css" href="../CSS/style.css">-->
+</head>     
+
 <body>
-    <input type="number" id="cardIdInput" placeholder="Enter card ID">
-    <button onclick="displayCardById(parseInt(document.getElementById('cardIdInput').value))">Display by ID</button>
+    <div class = "Bigtitle">
+        타로 백과사전 by 이웃집 타타로
+    </div>
+    <div class = "SearchBar">
+        <label for ="categorySelect" class="Checkboxes" onchange="displayCardsByCategory(this.value)">
+            <input type="checkbox" id="Major" name="Major"> 메이저 아르카나
+            <input type="checkbox" id="Sword" name="Sword"> 소드
+            <input type="checkbox" id="Cup" name="Cup"> 컵
+            <input type="checkbox" id="Pentacle" name="Pentacle"> 펜타클
+            <input type="checkbox" id="Wand" name="Wand"> 완드
+        </label>
+    </div>
+    <div class = "MainArea">
+        <div class = "CardArea" id = "cardDisplay"> </div>
+    </div>
+    <div class = "wrapper">
+
     </div>
 
-    <div>
-    <input type="text" id="cardNameInput" placeholder="Enter card Name">
-    <button onclick="displayCardByName(document.getElementById('cardNameInput').value)">Display by Name</button>
-    </div>
-
-<!-- 카테고리 선택 콤보박스 -->
-    <select id="categorySelect" onchange="displayCardsByCategory(this.value)">
-    <option value="">카드 카테고리를 선택하세요</option>
-    <option value="Major">Major</option>
-    <option value="Cup">Cup</option>
-    <option value="Pentacle">Pentacle</option>
-    <option value="Sword">Sword</option>
-    </select>
-
-    <div id="cardDisplay"></div>
-
-<script src="https://leekyeongjun.github.io/Tataro/PHP/JS/script.js"></script>
+    <!--<script src = "JS/script.js"></script>-->
+    <script src="https://leekyeongjun.github.io/Tataro/PHP/JS/script.js?var=1"></script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 let tarotData = { "tarotdata": [] }; // 초기화
 
 window.onload = function() {
-  fetchTarotData();
+    fetchTarotData();
 };
 
 function fetchTarotData() {
@@ -16,6 +16,7 @@ function fetchTarotData() {
         .then(data => {
             tarotData = data;
             console.log('Tarot data loaded successfully');
+            Initdictionary();
         })
         .catch(error => {
             console.error('There has been a problem with your fetch operation:', error);
@@ -26,7 +27,13 @@ function displayCardNameAndImage(id) {
     const card = tarotData.Deck.find(card => card.Id === id);
     const imagePath = `Deck/${card.Id}.jpg`; // 이미지 경로 동적 생성
     if (card) {
-      document.getElementById('cardDisplay').innerHTML += `<div>${card.Name}</div><img src="${imagePath}" alt="${card.Name}" style="width:100px;"><br>`;
+        document.getElementById('cardDisplay').innerHTML += 
+            //<a class = "CardContent" href = "cardDetails.html?arg=${id}"></a>
+            `<div class = "CardBtn">
+                <img class = "CardContent" src="${imagePath}" alt="${card.Name}">
+                <a class = "CardContent" href = "https://leekyeongjun.github.io/Tataro/PHP/cardDetails.html?arg=${id}"></a>
+                
+            </div>`;
     }
      else {
         console.log('Card not found');
@@ -56,36 +63,54 @@ function displayCardById(id) {
         console.log('Card not found');
     }
 }
-
+function Initdictionary(){
+    document.getElementById('cardDisplay').innerHTML = '';
+    for (let id = 0; id <= 77; id++) {
+        displayCardNameAndImage(id);
+    }
+}
 
   // 카테고리별 카드 출력 함수
 function displayCardsByCategory(category) {
+    console.log("Changed!")
     document.getElementById('cardDisplay').innerHTML = ''; // 카드 표시 영역 초기화
-    let startId, endId;
+    var Major= document.getElementById("Major");
+    var Sword= document.getElementById("Sword");
+    var Cup= document.getElementById("Cup");
+    var Pentacle= document.getElementById("Pentacle");
+    var Wand= document.getElementById("Wand");
 
-    switch(category) {
-        case 'Major':
-        startId = 0;
-        endId = 21;
-        break;
-        case 'Cup':
-        startId = 22;
-        endId = 35;
-        break;
-        case 'Pentacle':
-        startId = 36;
-        endId = 49;
-        break;
-        case 'Sword':
-        startId = 50;
-        endId = 77;
-        break;
-        default:
-        return; // 알 수 없는 카테고리의 경우 함수를 종료
+    if(Major.checked){
+        for (let id = 0; id <= 21; id++) {
+            displayCardNameAndImage(id);
+        }
+    }
+    if(Cup.checked){
+        for (let id = 22; id <= 35; id++) {
+            displayCardNameAndImage(id);
+        }      
+    }
+    if(Pentacle.checked){
+        for (let id = 36; id <= 49; id++) {
+            displayCardNameAndImage(id);
+        } 
+    }
+    if(Sword.checked){
+        for (let id = 50; id <= 63; id++) {
+            displayCardNameAndImage(id);
+        } 
+    }
+    if(Wand.checked){
+        for (let id = 64; id <= 77; id++) {
+            displayCardNameAndImage(id);
+        } 
+    }
+    if(!Major.checked && !Cup.checked && !Pentacle.checked && !Sword.checked && !Wand.checked){
+        for (let id = 0; id <= 77; id++) {
+            displayCardNameAndImage(id);
+        }
     }
 
-    for (let id = startId; id <= endId; id++) {
-        displayCardNameAndImage(id);
-    }
+
 }
   
