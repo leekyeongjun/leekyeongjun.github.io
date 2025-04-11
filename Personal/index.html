@@ -243,7 +243,7 @@ Git classroom에 업로드된 xv6 소프트웨어를 clone 하여 구현하였�
 clone address : &quot;&quot;
 </code></pre>
 <h2 id="implementation-schedule">Implementation Schedule</h2>
-<p><img src="file:///c:\Users\babyn\Documents\Lee's Vault\download.png" alt=""></p>
+<p><img src=".\imgs\download.png" alt=""></p>
 <hr>
 <h1 id="design">Design</h1>
 <h2 id="1-understandings-of-basic-rr-scheduler-in-xv6">1. Understandings of Basic RR scheduler in xv6</h2>
@@ -268,7 +268,7 @@ clone address : &quot;&quot;
 <p>주목해야 할 것은 <code>for loop</code>의 iteration 방법인데, <code>proc</code> Array를 Iteration 하는 포인터 <code>p</code> 가 증가하는 시점,
 즉 <code>p++</code> 가 행해지는 시점을 명확히 할 필요가 있다. 아래 그림을 보자.</p>
 <p><code>select</code> 변수는 다음에 스케줄링 할 프로세스를 가리키는 포인터 (<code>struct proc *</code>)이다.</p>
-<p><img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411154230.png" alt=""></p>
+<p><img src=".\imgs\Pasted%20image%2020250411154230.png" alt=""></p>
 <p>여기서 확인할 수 있듯이, 만약 <code>for loop</code> 도중 <code>swtch</code> 가 호출되어 context switch 가 발생하면, <code>scheduler</code>내의 iterator <code>p</code> 값은 선택된 프로세스에 <strong>정지한다</strong>. 이는 다시금 <code>yield</code>가 호출되어 context switch 가 발생, <code>scheduler</code>로 복귀했을 때 증가하게 된다. 즉, process가 선택된 다음 Round에, 전 Round에 선택되었던 process는 후순위로 밀린다는 것.</p>
 <p>따라서, 자연스럽게 기존 xv6의 <code>scheduler</code>는 process의 생성 순서대로 <strong>순차적으로</strong> 스케줄링되는 Round Robin의 형태를 갖게 된다.</p>
 <h2 id="2-fcfs-first-come-first-served-scheduler-implementation">2. FCFS (First-come-First-served) Scheduler Implementation</h2>
@@ -287,7 +287,7 @@ clone address : &quot;&quot;
 <li><code>proc.c</code>의 <code>scheduler</code> 내부에서 FCFS 처럼 동작하도록 하는 것.</li>
 <li>타이머 인터럽트를 꺼버리는 것.</li>
 </ol>
-<p><img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411155554.png" alt=""></p>
+<p><img src=".\imgs\Pasted%20image%2020250411155554.png" alt=""></p>
 <p>위 삽화는 각각 1번과 2번 방법을 도식화 한 것이다.
 이 중 <em>1번 방법</em> 을 선택하였으며, 근거는 아래와 같다.</p>
 <ul>
@@ -314,13 +314,13 @@ clone address : &quot;&quot;
 <p>좋다. 1번 방법을 이용해 FCFS 스케줄러를 구현할 것이다.
 어떻게 구현할 수 있을까?</p>
 <p>앞서 xv6의 원래 scheduler에서의 <strong>Iterator <code>p</code>의 이동 조건</strong> 에 조작을 가하면, 간단히 구현할 수 있다.</p>
-<p><img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411160317.png" alt=""></p>
+<p><img src=".\imgs\Pasted%20image%2020250411160317.png" alt=""></p>
 <p>기존 스케줄러의 스케줄링 방법이다.</p>
 <p>Iterator <code>p</code>가 <code>sched()</code> 직후 context restore 시점에 <strong>무조건 하나 늘어나기 때문에</strong> (다음 process를 가리키기 때문에),
 이 상황에서는 FCFS가 성립되지 않는다.</p>
 <p>FCFS 가 되려면 아래와 같이 되어야 한다.</p>
-<p><img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411160515.png" alt="">
-<img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411160545.png" alt=""></p>
+<p><img src=".\imgs\Pasted%20image%2020250411160515.png" alt="">
+<img src=".\imgs\Pasted%20image%2020250411160545.png" alt=""></p>
 <p>위 Flow를 보자.</p>
 <p>context switch 할 프로세스를 선택한 시점에, <code>Iterator p</code>를 <code>proc</code>으로, 즉 프로세스 테이블 배열의 <strong>첫번째 인덱스</strong>로 초기화하고 있다. 이러면 첫번째 인덱스의 프로세스가 <code>TERMINATED</code>, 혹은 <code>SLEEP</code>하기 전 까지 <code>p</code>는 계속 <code>RUNNABLE</code> 한 첫번째 프로세스를 가리키게 될 것이다. FCFS의 결과와 정확히 동일하다.</p>
 <p>다만 이렇게 구현할 경우 문제가 생긴다. <code>yield()</code>의 호출이 프로세스의 CPU 포기와 무관해진다.
@@ -332,13 +332,13 @@ P1이 <code>yield()</code>를 해서 CPU를 포기해봤자, 위 scheduling poli
 <p>Timer interrupt로 인해 호출되는 <code>yield()</code>는 preemptive 하다. 시간이 되면 반드시 호출되므로 프로세스의 의도와는 관계없이 CPU를 놔야 한다. 기존 코드의 수정으로 <code>scheduler</code>를 FCFS로 바꿨으니, 그 프로세스가 <code>RUNNABLE</code> 해졌다가 다시 <code>RUNNING</code> 상태로 전환되는 것은 변함이 없다. 즉 Timer interrupt에 의한 <code>yield()</code>는 별 신경 안써도 된다.</p>
 <p>문제는 yield system call에 의한 <code>yield()</code>이다. 이 경우 프로세스는 명확히 <strong>CPU를 놓고자 하는 의도</strong>가 있다.
 따라서 이를 존중해야 한다.</p>
-<p><img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411161911.png" alt=""></p>
+<p><img src=".\imgs\Pasted%20image%2020250411161911.png" alt=""></p>
 <p>위 삽화에서 볼 수 있듯, scheduler로 도달하게 한 <code>yield()</code>가 <strong>timer interrupt</strong> 기반인지, <strong>system call</strong> 기반인지에 따라 스케줄러는 다르게 동작해야 한다.</p>
 <p>System call에 의해 특정 프로세스가 <code>yield()</code>를 호출할 경우, 그 프로세스의 <code>pid</code>를 저장하는 변수를 하나 둠으로써
 이 문제를 해결할 수 있다.</p>
 <p><code>yieldpid</code>가 바로 그 변수이다.</p>
-<p><img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411162254.png" alt="">
-<img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411162347.png" alt=""></p>
+<p><img src=".\imgs\Pasted%20image%2020250411162254.png" alt="">
+<img src=".\imgs\Pasted%20image%2020250411162347.png" alt=""></p>
 <p>위 그림처럼 P1이 yield system call로 <code>yield()</code>를 호출했다면, 그 Round에는 P1을 <strong>배제해야 한다.</strong>
 그 이후에 다시 timer interrupt에 의해 <code>yield()</code>가 호출됐다면, 그때 다시 P1을 선택하면 된다.</p>
 <p>왜냐하면 P1은 <code>yield</code>를 한 것이지, <code>SLEEP</code> 이나 <code>TERMINATED</code> 된 것이 아니기 때문이다.
@@ -370,7 +370,7 @@ yield System call이 호출된 시점의 Scheduling에서만 배제하면 된다
 <h4 id="mlfq-스케줄러를-어떻게-구현해야-할까">MLFQ 스케줄러를 어떻게 구현해야 할까?</h4>
 <p>MLFQ는 L0 ~ L3 큐를 순회하며 <code>RUNNABLE</code> 한 프로세스를 찾아야 한다.
 따라서 한번의 Iteration 만으로 가능했던 FCFS와는 달리 Iteration이 여러번 일어나야 한다.</p>
-<p><img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411165113.png" alt=""></p>
+<p><img src=".\imgs\Pasted%20image%2020250411165113.png" alt=""></p>
 <p>위 삽화는 MLFQ 프로세스의 동작을 도식화한 것이다.
 <code>s</code>는 <code>p</code>를 통한 프로세스 테이블의 탐색이 마무리 된 이후, Context를 switch 할 프로세스를 가리킨다.
 <code>lastpid</code>는 FCFS의 <code>yieldpid</code>와 유사하나, <code>lastpid</code>의 경우 yield system call과 timer interrupt로 인해 호출된 <code>yield()</code>를 구분하지 않고, <code>yield</code>한 프로세스의 pid를 저장하고 있는 변수다.</p>
@@ -406,19 +406,19 @@ yield System call이 호출된 시점의 Scheduling에서만 배제하면 된다
 </li>
 </ol>
 <p>위 모형을 바탕으로 MLFQ 스케줄러의 <strong>Pseudo code</strong>는 아래와 같다.</p>
-<p><img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411170907.png" alt=""></p>
+<p><img src=".\imgs\Pasted%20image%2020250411170907.png" alt=""></p>
 <h4 id="multiple-iteration---lock-problem">Multiple iteration - lock problem</h4>
 <p>스케줄러 내부에서 여러번 Iteration을 하려면, lock을 <strong>acquire하고, release 하는 시점</strong>에 대한 이해가 필요하다.
 우선 iterator <code>p</code>가 process table을 iterating 하는 도중, lock을 얻는 이유는 PCB 내의 데이터는 <strong>Critical section</strong>이기 때문으로, 해당 값을 변화시키는 것은 <strong>atomic</strong> 하게 동작해야 하기 때문이다.</p>
 <p>따라서 Iteration 종료 이후 <code>swtch()</code>를 하려면, 해당 프로세스의 lock이 언제 잠기고 풀리는지 파악할 필요가 있다.
 아래 그림은 Iteration 바깥에서 context switch를 하는 중, 해당 프로세스의 lock이 어떻게 다뤄지는지에 대한 과정을 묘사하고 있다.</p>
 <h5 id="scheduler가-context-switching-할-process를-선택한-경우">Scheduler가 Context switching 할 process를 선택한 경우</h5>
-<p><img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411171344.png" alt="">
-<img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411171411.png" alt="">
-<img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411171443.png" alt=""></p>
+<p><img src=".\imgs\Pasted%20image%2020250411171344.png" alt="">
+<img src=".\imgs\Pasted%20image%2020250411171411.png" alt="">
+<img src=".\imgs\Pasted%20image%2020250411171443.png" alt=""></p>
 <h5 id="scheduler가-context-switching을-할-process를-선택하지-못한-경우">Scheduler가 Context switching을 할 process를 선택하지 못한 경우</h5>
-<p><img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411171617.png" alt="">
-<img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411171644.png" alt=""></p>
+<p><img src=".\imgs\Pasted%20image%2020250411171617.png" alt="">
+<img src=".\imgs\Pasted%20image%2020250411171644.png" alt=""></p>
 <h2 id="4-mode-switch-between-fcfs--mlfq-mode">4. Mode Switch between FCFS &amp; MLFQ Mode</h2>
 <h3 id="1-specification-2">1. Specification</h3>
 <h3 id="2-algorithm-2">2. Algorithm</h3>
