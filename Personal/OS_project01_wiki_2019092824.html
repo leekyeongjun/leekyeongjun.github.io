@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Index</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="index">Index</h1>
+<hr>
+<ol>
+<li><strong>Introduction</strong>
+<ol>
+<li>Purpose</li>
+<li>System Spec</li>
+<li>Implementation Schedule</li>
+</ol>
+</li>
+<li><strong>Design</strong>
+<ol>
+<li>Understandings of Basic RR scheduler in xv6</li>
+<li>FCFS (First-come-First-served) Scheduler Implementation
+<ol>
+<li>Specification</li>
+<li>Algorithm</li>
+</ol>
+</li>
+<li>MLFQ (Multiple level feedback queue) &amp; Priority Scheduling
+<ol>
+<li>Specification</li>
+<li>Algorithm</li>
+</ol>
+</li>
+<li>Mode Switch between FCFS &amp; MLFQ Mode
+<ol>
+<li>Specification</li>
+<li>Algorithm</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><strong>Implementation</strong>
+<ol>
+<li>FCFS Scheduler
+<ol>
+<li><code>scheduler()</code></li>
+<li>Related System call
+<ol>
+<li><code>int yield(void)</code></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>MLFQ Scheduler
+<ol>
+<li><code>scheduler()</code></li>
+<li>Related System call
+<ol>
+<li><code>int getlev(void)</code></li>
+<li><code>int setpriority(int pid, int priority)</code></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Mode change
+<ol>
+<li><code>scheduler()</code></li>
+<li>Related System call
+<ol>
+<li><code>int fcfsmode()</code></li>
+<li><code>int mlfqmode()</code></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><strong>Results</strong>
+<ol>
+<li>Test program 1</li>
+<li>Test program 2</li>
+<li>Test program 3</li>
+</ol>
+</li>
+<li><strong>TroubleShooting</strong></li>
+<li><strong>Appendix</strong>
+<ol>
+<li>개발일지</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h1 id="introduction">Introduction</h1>
+<h2 id="purpose">Purpose</h2>
+<blockquote>
+<p>Project01의 목적은 서로 다른 유형의 Scheduler를 구현하고, 이들 Scheduler 간의 전환을 가능하게 하는 것이다.</p>
+</blockquote>
+<p>이를 위해 xv6의 프로세스 관리방법, Interrupt 처리 방법, 기존 Scheduler의 구현 사항을 숙지해야 하며, 이에 더하여 FCFS, MLFQ Scheduler의 작동 원리를 이해하고 이를 구현할 수 있어야 한다.</p>
+<h2 id="system-spec">System Spec</h2>
+<h3 id="기기-사양">기기 사양</h3>
+<pre><code>프로세서	12th Gen Intel(R) Core(TM) i7-1260P   2.10 GHz
+설치된 RAM	16.0GB(15.7GB 사용 가능)
+저장소	477 GB SSD SAMSUNG MZVL2512HCJQ-00BL7
+그래픽 카드	Intel(R) UHD Graphics (128 MB)
+시스템 종류	64비트 운영 체제, x64 기반 프로세서
+</code></pre>
+<h3 id="xv6-정보">xv6 정보</h3>
+<pre><code>RISC-V 버전 xv6
+Git classroom에 업로드된 xv6 소프트웨어를 clone 하여 구현하였음.
+
+clone address : &quot;&quot;
+</code></pre>
+<h2 id="implementation-schedule">Implementation Schedule</h2>
+<p><img src="file:///c:\Users\babyn\Documents\Lee's Vault\download.png" alt=""></p>
+<hr>
+<h1 id="design">Design</h1>
+<h2 id="1-understandings-of-basic-rr-scheduler-in-xv6">1. Understandings of Basic RR scheduler in xv6</h2>
+<p>기존 xv6의 scheduler는 다음과 같이 동작한다.</p>
+<pre><code class="language-c"><span class="hljs-keyword">for</span>(;;){
+	<span class="hljs-keyword">for</span>(p = proc; p &lt; &amp;proc[NPROC]; p++) {
+      acquire(&amp;p-&gt;lock);
+      <span class="hljs-keyword">if</span>(p-&gt;state == RUNNABLE) {
+        p-&gt;state = RUNNING;
+        c-&gt;proc = p;
+        swtch(&amp;c-&gt;context, &amp;p-&gt;context);
+		<span class="hljs-comment">// 다음 sched() 호출 시 여기부터 시작</span>
+        c-&gt;proc = <span class="hljs-number">0</span>;
+        found = <span class="hljs-number">1</span>;
+      }
+      release(&amp;p-&gt;lock);
+    }
+}
+</code></pre>
+<p><code>proc.c</code>의 <code>scheduler()</code> 함수는 Timer interrupt로 인해 <code>yield()</code>가 호출된 후, <code>sched()</code>를 거쳐 실행된다.
+이때 <code>scheduler()</code> 함수의 program counter는 <code>swtch()</code> 가 발생한 바로 다음을 가리킨다.</p>
+<p>주목해야 할 것은 <code>for loop</code>의 iteration 방법인데, <code>proc</code> Array를 Iteration 하는 포인터 <code>p</code> 가 증가하는 시점,
+즉 <code>p++</code> 가 행해지는 시점을 명확히 할 필요가 있다. 아래 그림을 보자.</p>
+<p><code>select</code> 변수는 다음에 스케줄링 할 프로세스를 가리키는 포인터 (<code>struct proc *</code>)이다.</p>
+<p><img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411154230.png" alt=""></p>
+<p>여기서 확인할 수 있듯이, 만약 <code>for loop</code> 도중 <code>swtch</code> 가 호출되어 context switch 가 발생하면, <code>scheduler</code>내의 iterator <code>p</code> 값은 선택된 프로세스에 <strong>정지한다</strong>. 이는 다시금 <code>yield</code>가 호출되어 context switch 가 발생, <code>scheduler</code>로 복귀했을 때 증가하게 된다. 즉, process가 선택된 다음 Round에, 전 Round에 선택되었던 process는 후순위로 밀린다는 것.</p>
+<p>따라서, 자연스럽게 기존 xv6의 <code>scheduler</code>는 process의 생성 순서대로 <strong>순차적으로</strong> 스케줄링되는 Round Robin의 형태를 갖게 된다.</p>
+<h2 id="2-fcfs-first-come-first-served-scheduler-implementation">2. FCFS (First-come-First-served) Scheduler Implementation</h2>
+<h3 id="1-specification">1. Specification</h3>
+<ul>
+<li>기존 Scheduler의 변형일 것.</li>
+<li>PCB에 어떠한 조작도 가하지 않을 것. (변수 추가 등)</li>
+<li>생성 순서대로 프로세스를 선택할 것.</li>
+<li>프로세스가 선택되면, <code>TERMINATE</code> 되거나 스스로 <code>yield</code> 하지 않는 한 계속 프로세스 실행 권한을 유지할 것.</li>
+<li>커널 주요 부분을 수정할 것.</li>
+</ul>
+<h3 id="2-algorithm">2. Algorithm</h3>
+<h4 id="어떻게-fcfs-스케줄러를-구현할까">어떻게 FCFS 스케줄러를 구현할까?</h4>
+<p>FCFS 스케줄링을 실현할 수 있는 방법은 크게 두가지가 있다.</p>
+<ol>
+<li><code>proc.c</code>의 <code>scheduler</code> 내부에서 FCFS 처럼 동작하도록 하는 것.</li>
+<li>타이머 인터럽트를 꺼버리는 것.</li>
+</ol>
+<p><img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411155554.png" alt=""></p>
+<p>위 삽화는 각각 1번과 2번 방법을 도식화 한 것이다.
+이 중 <em>1번 방법</em> 을 선택하였으며, 근거는 아래와 같다.</p>
+<ul>
+<li>타이머 인터럽트를 끄면 FCFS 스케줄링을 간단히 구현할 수 있다.
+<ul>
+<li>매 Tick 마다 <code>yield()</code>가 실행되지 않기 때문이다.</li>
+</ul>
+</li>
+<li>그러나 이 방법을 사용해 FCFS 스케줄링을 하게 되면 MLFQ 스케줄러와의 <strong>모드 전환이 어려워 진다.</strong>
+<ul>
+<li>예컨대 Process 4와 Process 5가 각각 있다고 하자.
+<ul>
+<li>P4는 P5의 부모 프로세스다. 즉 <code>proc</code> 배열 기준 P4의 index가 P5보다 먼저다.
+<ul>
+<li>MLFQ로 스케줄링 하는 상황, <strong>P5 프로세스 실행 중</strong>에 모드가 <strong>FCFS로 바뀌면</strong> 그 다음 scheduing round 부터는 정상적인 FCFS 스케줄러 였을 때 <strong>P4</strong>로 Context switch가 발생해야 한다.</li>
+<li>그러나 타이머 인터럽트를 꺼버리면 그냥 P5가 끝날 때 까지 실행하게 되며, 이는 우리가 원하는 바가 아니다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>좋다. 1번 방법을 이용해 FCFS 스케줄러를 구현할 것이다.
+어떻게 구현할 수 있을까?</p>
+<p>앞서 xv6의 원래 scheduler에서의 <strong>Iterator <code>p</code>의 이동 조건</strong> 에 조작을 가하면, 간단히 구현할 수 있다.</p>
+<p><img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411160317.png" alt=""></p>
+<p>기존 스케줄러의 스케줄링 방법이다.</p>
+<p>Iterator <code>p</code>가 <code>sched()</code> 직후 context restore 시점에 <strong>무조건 하나 늘어나기 때문에</strong> (다음 process를 가리키기 때문에),
+이 상황에서는 FCFS가 성립되지 않는다.</p>
+<p>FCFS 가 되려면 아래와 같이 되어야 한다.</p>
+<p><img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411160515.png" alt="">
+<img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411160545.png" alt=""></p>
+<p>위 Flow를 보자.</p>
+<p>context switch 할 프로세스를 선택한 시점에, <code>Iterator p</code>를 <code>proc</code>으로, 즉 프로세스 테이블 배열의 <strong>첫번째 인덱스</strong>로 초기화하고 있다. 이러면 첫번째 인덱스의 프로세스가 <code>TERMINATED</code>, 혹은 <code>SLEEP</code>하기 전 까지 <code>p</code>는 계속 <code>RUNNABLE</code> 한 첫번째 프로세스를 가리키게 될 것이다. FCFS의 결과와 정확히 동일하다.</p>
+<p>다만 이렇게 구현할 경우 문제가 생긴다. <code>yield()</code>의 호출이 프로세스의 CPU 포기와 무관해진다.
+P1이 <code>yield()</code>를 해서 CPU를 포기해봤자, 위 scheduling policy 하에선 어짜피 P1이 다시 선택되기 때문이다.</p>
+<h4 id="system-call을-통해-특정-프로세스가-yield-한-경우-fcfs-스케줄러는-어떻게-동작해야-할까">System call을 통해 특정 프로세스가 <code>yield</code> 한 경우, FCFS 스케줄러는 어떻게 동작해야 할까?</h4>
+<p>본 문제를 해결하기 위해, 반드시 선행되어야 하는 개념이 있다.</p>
+<p><strong>Timer interrupt</strong>로 인해 호출되는 <code>yield()</code>와, <strong>System call</strong>에 의해 호출되는 <code>yield()</code>는 <strong>다르게</strong> 취급되어야 한다.
+그 이유는 프로세스가 자신의 cpu 점유를 놓고자 하는 &quot;<strong>의도의 유무</strong>&quot;와 크게 관련이 있다.</p>
+<p>Timer interrupt로 인해 호출되는 <code>yield()</code>는 preemptive 하다. 시간이 되면 반드시 호출되므로 프로세스의 의도와는 관계없이 CPU를 놔야 한다. 기존 코드의 수정으로 <code>scheduler</code>를 FCFS로 바꿨으니, 그 프로세스가 <code>RUNNABLE</code> 해졌다가 다시 <code>RUNNING</code> 상태로 전환되는 것은 변함이 없다. 즉 Timer interrupt에 의한 <code>yield()</code>는 별 신경 안써도 된다.</p>
+<p>문제는 yield system call에 의한 <code>yield()</code>이다. 이 경우 프로세스는 명확히 <strong>CPU를 놓고자 하는 의도</strong>가 있다.
+따라서 이를 존중해야 한다.</p>
+<p><img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411161911.png" alt=""></p>
+<p>위 삽화에서 볼 수 있듯, scheduler로 도달하게 한 <code>yield()</code>가 <strong>timer interrupt</strong> 기반인지, <strong>system call</strong> 기반인지에 따라 스케줄러는 다르게 동작해야 한다.</p>
+<p>System call에 의해 특정 프로세스가 <code>yield()</code>를 호출할 경우, 그 프로세스의 <code>pid</code>를 저장하는 변수를 하나 둠으로써
+이 문제를 해결할 수 있다.</p>
+<p><code>yieldpid</code>가 바로 그 변수이다.</p>
+<p><img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411162254.png" alt="">
+<img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411162347.png" alt=""></p>
+<p>위 그림처럼 P1이 yield system call로 <code>yield()</code>를 호출했다면, 그 Round에는 P1을 <strong>배제해야 한다.</strong>
+그 이후에 다시 timer interrupt에 의해 <code>yield()</code>가 호출됐다면, 그때 다시 P1을 선택하면 된다.</p>
+<p>왜냐하면 P1은 <code>yield</code>를 한 것이지, <code>SLEEP</code> 이나 <code>TERMINATED</code> 된 것이 아니기 때문이다.
+yield System call이 호출된 시점의 Scheduling에서만 배제하면 된다.</p>
+<h2 id="3-mlfq-multiple-level-feedback-queue--priority-scheduling">3. MLFQ (Multiple level feedback queue) &amp; Priority Scheduling</h2>
+<h3 id="1-specification-1">1. Specification</h3>
+<ul>
+<li>각 프로세스는 3개의 Queue(L0, L1, L2)에 속한다.
+<ul>
+<li>L0 : 1tick의 time quantum</li>
+<li>L1 : 3tick의 time quantum</li>
+<li>L2 : 5tick의 time quantum, priority 적용됨.</li>
+</ul>
+</li>
+<li>새로운 프로세스 생성시 L0으로 배치된다.</li>
+<li>각 Queue에서의 RUNNABLE 한 프로세스가 없으면, 하위 큐에서 찾는다.</li>
+<li>각 Queue에서 time quantum을 전부 소모한 프로세스는 Demotion 한다.</li>
+<li>L2 Queue는 Priority가 적용되며, 높은 Priority를 가진 프로세스가 먼저 실행된다. (3~0 순)
+<ul>
+<li>Global tick이 50이 될 때, Priority Boosting이 발생한다.
+<ul>
+<li>모든 프로세스의 Queue를 0으로 초기화하며, Time quantum 역시 초기화 한다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-algorithm-1">2. Algorithm</h3>
+<h4 id="mlfq-스케줄러를-어떻게-구현해야-할까">MLFQ 스케줄러를 어떻게 구현해야 할까?</h4>
+<p>MLFQ는 L0 ~ L3 큐를 순회하며 <code>RUNNABLE</code> 한 프로세스를 찾아야 한다.
+따라서 한번의 Iteration 만으로 가능했던 FCFS와는 달리 Iteration이 여러번 일어나야 한다.</p>
+<p><img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411165113.png" alt=""></p>
+<p>위 삽화는 MLFQ 프로세스의 동작을 도식화한 것이다.
+<code>s</code>는 <code>p</code>를 통한 프로세스 테이블의 탐색이 마무리 된 이후, Context를 switch 할 프로세스를 가리킨다.
+<code>lastpid</code>는 FCFS의 <code>yieldpid</code>와 유사하나, <code>lastpid</code>의 경우 yield system call과 timer interrupt로 인해 호출된 <code>yield()</code>를 구분하지 않고, <code>yield</code>한 프로세스의 pid를 저장하고 있는 변수다.</p>
+<p>크게 3가지 부분을 중점적으로 살펴보자.</p>
+<ol>
+<li>프로세스의 PCB에는 어떤 데이터가 추가되어야 하는가?
+<ul>
+<li>현재 <code>queue number</code>, 현재 사용중인 <code>Time quantum</code>, L2 큐 스케줄링을 위한 <code>priority</code>가 필요하다.</li>
+</ul>
+</li>
+<li>프로세스의 tq(time quantum)는 <strong>언제 소모되어야 하는가?</strong>
+<ul>
+<li>Timer interrupt가 실행되어 <code>yield()</code>가 호출된 시점에, 프로세스를 <code>RUNNABLE</code> 로 만들기 전 소모하면 된다.</li>
+</ul>
+</li>
+<li>Iteration은 <strong>몇 번 일어나야 하는가?</strong>
+<ul>
+<li>Scheduler 내부에서 최소 <strong>1번</strong>, 많으면 <strong>9번</strong> 일어날 수 있다.
+<ul>
+<li>프로세스 전체의 갯수가 64개 이하이고, Queue 갯수가 3개, 그 중 Priority를 쓰는 L2 Queue의 경우 Priority 가 0, 1, 2, 3 4개 이므로
+<ul>
+<li>1(priority boosting) + 1 (tq 소모가 다 안됐을 경우) + 1 (tq 소모 다 한 프로세스 Demotion) + 1 (L0) + 1(L1) + 4(L2 priority 4개) = 9</li>
+<li>최대 576 cycle 이내에 MLFQ 스케줄링은 마무리 된다.
+<ul>
+<li>개발 머신이 2.1Ghz frequency를 가지므로, wsl, qemu등의 속도 저해 요소를 배제하고 xv6가 본 머신의 main OS일 경우 100ms 이내에 스케줄링이 끝난다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>위 모형을 바탕으로 MLFQ 스케줄러의 <strong>Pseudo code</strong>는 아래와 같다.</p>
+<p><img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411170907.png" alt=""></p>
+<h4 id="multiple-iteration---lock-problem">Multiple iteration - lock problem</h4>
+<p>스케줄러 내부에서 여러번 Iteration을 하려면, lock을 <strong>acquire하고, release 하는 시점</strong>에 대한 이해가 필요하다.
+우선 iterator <code>p</code>가 process table을 iterating 하는 도중, lock을 얻는 이유는 PCB 내의 데이터는 <strong>Critical section</strong>이기 때문으로, 해당 값을 변화시키는 것은 <strong>atomic</strong> 하게 동작해야 하기 때문이다.</p>
+<p>따라서 Iteration 종료 이후 <code>swtch()</code>를 하려면, 해당 프로세스의 lock이 언제 잠기고 풀리는지 파악할 필요가 있다.
+아래 그림은 Iteration 바깥에서 context switch를 하는 중, 해당 프로세스의 lock이 어떻게 다뤄지는지에 대한 과정을 묘사하고 있다.</p>
+<h5 id="scheduler가-context-switching-할-process를-선택한-경우">Scheduler가 Context switching 할 process를 선택한 경우</h5>
+<p><img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411171344.png" alt="">
+<img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411171411.png" alt="">
+<img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411171443.png" alt=""></p>
+<h5 id="scheduler가-context-switching을-할-process를-선택하지-못한-경우">Scheduler가 Context switching을 할 process를 선택하지 못한 경우</h5>
+<p><img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411171617.png" alt="">
+<img src="file:///c:\Users\babyn\Documents\Lee's Vault\Pasted%20image%2020250411171644.png" alt=""></p>
+<h2 id="4-mode-switch-between-fcfs--mlfq-mode">4. Mode Switch between FCFS &amp; MLFQ Mode</h2>
+<h3 id="1-specification-2">1. Specification</h3>
+<h3 id="2-algorithm-2">2. Algorithm</h3>
+<h1 id="implementation">Implementation</h1>
+<h1 id="results">Results</h1>
+<h1 id="troubleshooting">Troubleshooting</h1>
+
+            
+            
+        </body>
+        </html>
